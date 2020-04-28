@@ -58,15 +58,6 @@
 	</header>
 
 	<!-- Main Content -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="repoContainer">
-			</div>
-		</div>
-	</div>
-
-
-	<!-- Main Content -->
 	<article>
 		<div class="container" id="tabl">
 			<div class="row">
@@ -82,7 +73,6 @@
 										<th class="table-header-center header-cprice headerValue">Current Price</th>
 										<th class="table-header-center header-dhigh headerValue">Day High</th>
 										<th class="table-header-center header-dlow headerValue">Day Low</th>
-										<th class="table-header-center header-dopen headerValue">Day Open</th>
 										<th class="table-header-center header-change headerValue">% Change</th>
 									</tr>
 								</thead>
@@ -105,7 +95,6 @@
 										<th class="table-header-center header-cprice headerValue">Current Price</th>
 										<th class="table-header-center header-dhigh headerValue">Day High</th>
 										<th class="table-header-center header-dlow headerValue">Day Low</th>
-										<th class="table-header-center header-dopen headerValue">Day Open</th>
 										<th class="table-header-center header-change headerValue">% Change</th>
 									</tr>
 								</thead>
@@ -194,7 +183,6 @@
 							+ '<td class="header-cprice numberValue">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
 							+ '<td class="header-dhigh numberValue">' + numberWithCommas(actualData["HIGH"]) + '</td>'
 							+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
-							+ '<td class="header-dopen numberValue">' + numberWithCommas(actualData["OPEN"]) + '</td>'
 							+ '<td class="header-change numberValue">' + numberWithCommas(actualData["PERCCHANGE"]) + '%</td></tr>';
 						$("#covidValue").append(valueTemplate);
 					}
@@ -224,7 +212,6 @@
 							+ '<td class="header-cprice numberValue">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
 							+ '<td class="header-dhigh numberValue">' + numberWithCommas(actualData["HIGH"]) + '</td>'
 							+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
-							+ '<td class="header-dopen numberValue">' + numberWithCommas(actualData["OPEN"]) + '</td>'
 							+ '<td class="header-change numberValue">' + numberWithCommas(actualData["PERCCHANGE"]) + '%</td></tr>';
 						$("#covidValue").append(valueTemplate);
 					}
@@ -255,7 +242,6 @@
 						+ '<td class="header-cprice numberValue">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
 						+ '<td class="header-dhigh numberValue">' + numberWithCommas(actualData["HIGH"]) + '</td>'
 						+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
-						+ '<td class="header-dopen numberValue">' + numberWithCommas(actualData["OPEN"]) + '</td>'
 						+ '<td class="header-change numberValue">' + numberWithCommas(actualData["PERCCHANGE"]) + '%</td></tr>';
 						$("#otherValue").append(valueTemplate);
 				},
