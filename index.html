@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Market Dashboard">
+	<meta name="author" content="Gokulan Viswanathan">
+
+	<link rel="icon" type="image/jpg" sizes="16x16" href="./images/corona-title-image.jpg">
+
+	<title>Market Dashboard</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Theme CSS -->
+	<link href="styles/custom-style.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+		type='text/css'>
+	<link
+		href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+		rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+	<!-- Page Header -->
+	<!-- Set your background image for this header on the line below. -->
+	<header class="intro-header" style="background-image: url('images/simple-background-grey.png')">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<div class="site-heading">
+						<h2>Market Dashboard</h2>
+						<!-- <hr class="medium">
+						<span class="subheading">Lite version</span> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="repoContainer">
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Main Content -->
+	<article>
+		<div class="container" id="tabl">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<div class="states-box">
+						<h3 class="section-heading" style="padding-left: 5px">Major Indian Indices</h3>
+						<p id="updatedTime" style="font-size: 11px;padding-left: 5px">Last updated on: </p>
+						<blockquote>
+							<table class="table table-hover">
+								<thead class="covidHeading">
+									<tr>
+										<th class="table-header-center header-confirmed">Index</th>
+										<th class="table-header-center header-active">Current Price</th>
+										<th class="table-header-center header-recovered">Day High</th>
+										<th class="table-header-center header-dead">Day Low</th>
+									</tr>
+								</thead>
+								<tbody class="covidValue" id="covidValue">
+									<!-- <tr class="covidValue" id="covidValue">
+									</tr> -->
+								</tbody>
+							</table>
+						</blockquote>
+					</div>
+					
+					<div class="states-box">
+						<h3 class="section-heading" style="padding-left: 5px">Other Indian Indices</h3>
+						<p id="updatedTimeOthers" style="font-size: 11px;padding-left: 5px">Last updated on: </p>
+						<blockquote>
+							<table class="table table-hover">
+								<thead class="covidHeading">
+									<tr>
+										<th class="table-header-center header-confirmed">Index</th>
+										<th class="table-header-center header-active">Current Price</th>
+										<th class="table-header-center header-recovered">Day High</th>
+										<th class="table-header-center header-dead">Day Low</th>
+									</tr>
+								</thead>
+								<tbody class="otherValue" id="otherValue">
+									<!-- <tr class="covidValue" id="covidValue">
+									</tr> -->
+								</tbody>
+							</table>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<hr>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<ul class="list-inline text-center">
+						<center>
+							<li>
+								<a data-toggle="tooltip" title="Facebook" href="https://facebook.com/gokulan90"
+									target="_blank" class="social"><img src="images/icon-facebook.png" width="36"
+										height="36" draggable="false"></a>
+								<!-- <a data-toggle="tooltip" title="GitHub" href="https://github.com/gokulanviswanathan" target="_blank" class="social"><img src="images/icon-github.png" width="36" height="36" draggable="false"></a> -->
+							</li>
+							<p></p>
+							<p style="font-size:9px">Disclaimer: This page is best viewed in Google Chrome desktop
+								browser with a zoom level at 100%</p>
+						</center>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/script/bootstrap.min.js"></script>
+
+	<!-- Contact Form JavaScript -->
+	<script src="script/jqBootstrapValidation.js"></script>
+	<script src="script/contact_me.js"></script>
+
+	<!-- Theme JavaScript -->
+	<script src="script/clean-blog.min.js"></script>
+
+	<script>
+
+		function formatDate(date) {
+			var utc = date.toUTCString() // 'ddd, DD MMM YYYY HH:mm:ss GMT'
+			return utc.slice(8, 12) + utc.slice(5, 7) + ", " + utc.slice(12, 16)
+		}
+
+		function comp(a, b) {
+			return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
+		}
+		
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		
+		function getNiftyIndex() {
+			
+			$.ajax(
+			{
+				method: "GET",
+				url: "https://priceapi-aws.moneycontrol.com/pricefeed/notapplicable/inidicesindia/in%3BNSX",
+				success: function (resData) {
+				
+					var actualData = resData["data"];
+					
+					if (actualData["company"] === 'NIFTY 50') {
+						updatedTimeTemplate = actualData["lastupd"] + " IST  " + '<img src="./images/live_icon.gif" width="32" height="22" draggable="false"/>';
+						$("#updatedTime").append(updatedTimeTemplate);
+						//SBI--https://priceapi-aws.moneycontrol.com/pricefeed/bse/equitycash/SBI
+
+						valueTemplate = '<tr><td class="header-confirmed">' + numberWithCommas(actualData["company"]) + '</td>'
+							+ '<td class="header-active">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
+							+ '<td class="header-recovered">' + numberWithCommas(actualData["HIGH"]) + '</td>'
+							+ '<td class="header-dead">' + numberWithCommas(actualData["LOW"]) + '</td></tr>';
+						$("#covidValue").append(valueTemplate);
+					}
+				},
+				error: function (xhr, status, error) {
+					alert(error);
+				}
+			});
+		}
+		
+		function getSensexIndex() {
+			
+			$.ajax(
+			{
+				method: "GET",
+				url: "https://priceapi-aws.moneycontrol.com/pricefeed/notapplicable/inidicesindia/in%3BSEN",
+				success: function (resData) {
+				
+					var actualData = resData["data"];
+					
+					if (actualData["company"] === 'SENSEX') {
+						//updatedTimeTemplate = actualData["lastupd"] + " IST  " + '<img src="./images/live_icon.gif" width="32" height="22" draggable="false"/>';
+						//$("#updatedTime").append(updatedTimeTemplate);
+						//SBI--https://priceapi-aws.moneycontrol.com/pricefeed/bse/equitycash/SBI
+
+						valueTemplate = '<tr><td class="header-confirmed">' + numberWithCommas(actualData["company"]) + '</td>'
+							+ '<td class="header-active">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
+							+ '<td class="header-recovered">' + numberWithCommas(actualData["HIGH"]) + '</td>'
+							+ '<td class="header-dead">' + numberWithCommas(actualData["LOW"]) + '</td></tr>';
+						$("#covidValue").append(valueTemplate);
+					}
+				},
+				error: function (xhr, status, error) {
+					alert(error);
+				}
+			});
+		}
+		
+		function getOtherIndices(indexCode) {
+			$.ajax(
+				{
+					
+					method: "GET",
+					url: "https://priceapi-aws.moneycontrol.com/pricefeed/notapplicable/inidicesindia/" + indexCode,
+					success: function (resData) {
+					
+					var actualData = resData["data"];
+					
+					//Populate timestamp only once in iteration
+					if (indexCode === "in%3BBCX") {
+						updatedTimeTemplateOthers = actualData["lastupd"] + " IST  " + '<img src="./images/live_icon.gif" width="32" height="22" draggable="false"/>';
+						$("#updatedTimeOthers").append(updatedTimeTemplateOthers);
+					}
+					
+					valueTemplate = '<tr><td class="header-confirmed">' + numberWithCommas(actualData["company"]) + '</td>'
+						+ '<td class="header-active">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
+						+ '<td class="header-recovered">' + numberWithCommas(actualData["HIGH"]) + '</td>'
+						+ '<td class="header-dead">' + numberWithCommas(actualData["LOW"]) + '</td></tr>';
+						$("#otherValue").append(valueTemplate);
+				},
+				error: function (xhr, status, error) {
+					alert(error);
+				}
+			});
+		}
+		
+		// Get Nifty50 Index with updated timestamp
+		getNiftyIndex();
+		
+		// Get Sensex Index
+		getSensexIndex();
+
+		// Get other Indian Indices
+		{
+			var indicesArr = ["in%3BBCX", "in%3Bbmx", "in%3Bcey", "in%3Bihb",
+								"in%3Bblp", "IN%3Bbsx"];
+			for (var elem=0; elem <= indicesArr.length-1; elem++) {
+				getOtherIndices(indicesArr[elem]);
+			}
+		}
+	</script>
+
+</body>
+
+</html>
