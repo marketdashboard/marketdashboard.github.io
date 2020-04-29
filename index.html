@@ -18,6 +18,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Market Dashboard">
 	<meta name="author" content="Gokulan Viswanathan">
+	<!-- Auto refresh the page for every 90 seconds -->
+	<meta http-equiv="refresh" content="90"/>
 
 	<link rel="icon" type="image/jfif" sizes="16x16" href="./images/market-dashboard-title.jfif">
 
@@ -48,7 +50,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="site-heading">
-						<h2>Market Dashboard</h2>
+						<h2>Insights on Indices</h2>
 						<!-- <hr class="medium">
 						<span class="subheading">Lite version</span> -->
 					</div>
@@ -63,8 +65,8 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="states-box">
-						<h3 class="section-heading" style="padding-left: 5px">Major Indian Indices</h3>
-						<p id="updatedTime" style="font-size: 11px;padding-left: 5px">Last updated on: </p>
+						<h3 class="section-heading" style="padding-left: 5px">Nifty 50 & Sensex</h3>
+						<p id="updatedTime" style="font-size: 11px; padding-left: 5px">Last updated on: </p>
 						<blockquote>
 							<table class="table table-hover">
 								<thead class="covidHeading">
@@ -85,8 +87,28 @@
 					</div>
 					
 					<div class="states-box">
-						<h3 class="section-heading" style="padding-left: 5px">Other Indian Indices</h3>
-						<p id="updatedTimeOthers" style="font-size: 11px;padding-left: 5px">Last updated on: </p>
+						<h3 class="section-heading" style="padding-left: 5px">NSE Indices</h3>
+						<p id="updatedTimeNse" style="font-size: 11px; padding-left: 5px">Last updated on: </p>
+						<blockquote>
+							<table class="table table-hover">
+								<thead class="covidHeading">
+									<tr>
+										<th class="table-header-center header-confirmed headerFirst">Index</th>
+										<th class="table-header-center header-cprice headerValue">Current Price</th>
+										<th class="table-header-center header-dhigh headerValue">Day High</th>
+										<th class="table-header-center header-dlow headerValue">Day Low</th>
+										<th class="table-header-center header-change headerValue">% Change</th>
+									</tr>
+								</thead>
+								<tbody class="nseValue" id="nseValue">
+								</tbody>
+							</table>
+						</blockquote>
+					</div>
+					
+					<div class="states-box">
+						<h3 class="section-heading" style="padding-left: 5px">BSE Indices</h3>
+						<p id="updatedTimeOthers" style="font-size: 11px; padding-left: 5px">Last updated on: </p>
 						<blockquote>
 							<table class="table table-hover">
 								<thead class="covidHeading">
@@ -180,7 +202,7 @@
 						$("#updatedTime").append(updatedTimeTemplate);
 						//SBI--https://priceapi-aws.moneycontrol.com/pricefeed/bse/equitycash/SBI
 
-						valueTemplate = '<tr><td class="header-confirmed numberFirst">' + numberWithCommas(actualData["company"]) + '</td>'
+						valueTemplate = '<tr><td class="header-confirmed numberFirst">' + numberWithCommas(actualData["company"]).toUpperCase() + '</td>'
 							+ '<td class="header-cprice numberValue">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
 							+ '<td class="header-dhigh numberValue">' + numberWithCommas(actualData["HIGH"]) + '</td>'
 							+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
@@ -205,11 +227,9 @@
 					var actualData = resData["data"];
 					
 					if (actualData["company"] === 'SENSEX') {
-						//updatedTimeTemplate = actualData["lastupd"] + " IST  " + '<img src="./images/live_icon.gif" width="32" height="22" draggable="false"/>';
-						//$("#updatedTime").append(updatedTimeTemplate);
 						//SBI--https://priceapi-aws.moneycontrol.com/pricefeed/bse/equitycash/SBI
 
-						valueTemplate = '<tr><td class="header-confirmed numberFirst">' + numberWithCommas(actualData["company"]) + '</td>'
+						valueTemplate = '<tr><td class="header-confirmed numberFirst">' + numberWithCommas(actualData["company"]).toUpperCase() + '</td>'
 							+ '<td class="header-cprice numberValue">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
 							+ '<td class="header-dhigh numberValue">' + numberWithCommas(actualData["HIGH"]) + '</td>'
 							+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
@@ -223,7 +243,7 @@
 			});
 		}
 		
-		function getOtherIndices(indexCode) {
+		function getNseIndices(indexCode) {
 			$.ajax(
 				{
 					
@@ -234,12 +254,41 @@
 					var actualData = resData["data"];
 					
 					//Populate timestamp only once in iteration
-					if (indexCode === "in%3BBCX") {
+					if (indexCode === "in%3Bccx") {
+						updatedTimeTemplateOthers = actualData["lastupd"] + " IST  " + '<img src="./images/live_icon.gif" width="32" height="22" draggable="false"/>';
+						$("#updatedTimeNse").append(updatedTimeTemplateOthers);
+					}
+					
+					valueTemplate = '<tr><td class="header-confirmed numberFirst">' + numberWithCommas(actualData["company"]).toUpperCase() + '</td>'
+						+ '<td class="header-cprice numberValue">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
+						+ '<td class="header-dhigh numberValue">' + numberWithCommas(actualData["HIGH"]) + '</td>'
+						+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
+						+ '<td class="header-change numberValue">' + numberWithCommas(actualData["PERCCHANGE"]) + '%</td></tr>';
+						$("#nseValue").append(valueTemplate);
+				},
+				error: function (xhr, status, error) {
+					alert(error);
+				}
+			});
+		}
+		
+		function getBseIndices(indexCode) {
+			$.ajax(
+				{
+					
+					method: "GET",
+					url: "https://priceapi-aws.moneycontrol.com/pricefeed/notapplicable/inidicesindia/" + indexCode,
+					success: function (resData) {
+					
+					var actualData = resData["data"];
+					
+					//Populate timestamp only once in iteration
+					if (indexCode === "in%3BBCX" || indexCode === "in%3Bccx") {
 						updatedTimeTemplateOthers = actualData["lastupd"] + " IST  " + '<img src="./images/live_icon.gif" width="32" height="22" draggable="false"/>';
 						$("#updatedTimeOthers").append(updatedTimeTemplateOthers);
 					}
 					
-					valueTemplate = '<tr><td class="header-confirmed numberFirst">' + numberWithCommas(actualData["company"]) + '</td>'
+					valueTemplate = '<tr><td class="header-confirmed numberFirst">' + numberWithCommas(actualData["company"]).toUpperCase() + '</td>'
 						+ '<td class="header-cprice numberValue">' + numberWithCommas(actualData["pricecurrent"]) + '</td>'
 						+ '<td class="header-dhigh numberValue">' + numberWithCommas(actualData["HIGH"]) + '</td>'
 						+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
@@ -258,14 +307,24 @@
 		// Get Sensex Index
 		getSensexIndex();
 
-		// Get other Indian Indices
+		// Get other NSE & BSE Indices
 		{
-			var indicesArr = ["in%3BBCX", "in%3Bbmx", "in%3Bcey", "in%3Bihb",
-								"in%3Bblp", "IN%3Bbsx"];
-			for (var elem=0; elem <= indicesArr.length-1; elem++) {
-				getOtherIndices(indicesArr[elem]);
+			var bseIndices = ["in%3BBCX","in%3Bbmx","in%3Bcey","in%3Bihb","in%3Bblp","IN%3Bbsx","IN%3BNTL","IN%3BSEI","IN%3BBNX","IN%3Bbkx","IN%3Baox","IN%3Bogx","in%3Bbsq","in%3Bspf","IN%3BFMX","IN%3BHAX","in%3Bmfg","IN%3Bfx","in%3Bbpo","in%3Bpbx","in%3Btez"];
+			
+			var nseIndices = ["in%3Bcjn","in%3Bccx","in%3Bmfy","in%3Bnnx","in%3Bncx","in%3Bcnxa","in%3Bnbx","in%3Bcgy","in%3Bcfm","in%3Bcfr","in%3Bcit","in%3Bcnmx","in%3BCNXM","in%3Bcxc","in%3Bcpr","in%3Bcps","in%3Bcuk","in%3Bcrv","in%3Bcrl"];
+			
+			for (var nseElem=0; nseElem <= nseIndices.length-1; nseElem++) {
+				getNseIndices(nseIndices[nseElem]);
 			}
+			
+			for (var bseElem=0; bseElem <= bseIndices.length-1; bseElem++) {
+				getBseIndices(bseIndices[bseElem]);
+			}
+			
 		}
+		
+		
+		
 	</script>
 
 </body>
