@@ -163,11 +163,10 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="vendor/bootstrap/script/bootstrap.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Contact Form JavaScript -->
 	<script src="script/jqBootstrapValidation.js"></script>
-	<script src="script/contact_me.js"></script>
 
 	<!-- Theme JavaScript -->
 	<script src="script/clean-blog.min.js"></script>
@@ -265,6 +264,7 @@
 						+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
 						+ '<td class="header-change numberValue">' + numberWithCommas(actualData["PERCCHANGE"]) + '%</td></tr>';
 						$("#nseValue").append(valueTemplate);
+						sortDataByAscOrder('nseValue');
 				},
 				error: function (xhr, status, error) {
 					alert(error);
@@ -294,6 +294,7 @@
 						+ '<td class="header-dlow numberValue">' + numberWithCommas(actualData["LOW"]) + '</td>'
 						+ '<td class="header-change numberValue">' + numberWithCommas(actualData["PERCCHANGE"]) + '%</td></tr>';
 						$("#otherValue").append(valueTemplate);
+						sortDataByAscOrder('otherValue');
 				},
 				error: function (xhr, status, error) {
 					alert(error);
@@ -309,9 +310,9 @@
 
 		// Get other NSE & BSE Indices
 		{
-			var bseIndices = ["in%3BBCX","in%3Bbmx","in%3Bcey","in%3Bihb","in%3Bblp","IN%3Bbsx","IN%3BNTL","IN%3BSEI","IN%3BBNX","IN%3Bbkx","IN%3Baox","IN%3Bogx","in%3Bbsq","in%3Bspf","IN%3BFMX","IN%3BHAX","in%3Bmfg","IN%3Bfx","in%3Bbpo","in%3Bpbx","in%3Btez"];
+			var bseIndices = ["in%3BBCX","in%3Bbmx","in%3Bcey","in%3Bihb","in%3Bblp","IN%3Bbsx","IN%3BNTL","IN%3BSEI","IN%3BBNX","IN%3Bbkx","IN%3Baox","IN%3Bogx","in%3Bbsq","in%3Bspf","IN%3BFMX","IN%3BHAX","in%3Bmfg","IN%3Bifx","in%3Bbpo","in%3Bpbx","in%3Btez"];
 			
-			var nseIndices = ["in%3Bcjn","in%3Bccx","in%3Bmfy","in%3Bnnx","in%3Bncx","in%3Bcnxa","in%3Bnbx","in%3Bcgy","in%3Bcfm","in%3Bcfr","in%3Bcit","in%3Bcnmx","in%3BCNXM","in%3Bcxc","in%3Bcpr","in%3Bcps","in%3Bcuk","in%3Bcrv","in%3Bcrl"];
+			var nseIndices = ["in%3Bcjn","in%3Bccx","in%3Bmfy","in%3Bnnx","in%3Bncx","in%3Bcnxa","in%3Bnbx","in%3Bcgy","in%3Bcfm","in%3Bcfr","in%3Bcnit","in%3Bcnmx","in%3BCNXM","in%3Bcxc","in%3Bcpr","in%3Bcps","in%3Bcuk","in%3Bcrv","in%3Bcrl"];
 			
 			for (var nseElem=0; nseElem <= nseIndices.length-1; nseElem++) {
 				getNseIndices(nseIndices[nseElem]);
@@ -323,6 +324,28 @@
 			
 		}
 		
+		// Sort data by ascending order
+		function sortDataByAscOrder(nodeId) {
+			var list = document.getElementById(nodeId);
+
+			var items = list.childNodes;
+			var itemsArr = [];
+			for (var i in items) {
+				if (items[i].nodeType == 1) { // get rid of the whitespace text nodes
+					itemsArr.push(items[i]);
+				}
+			}
+
+			itemsArr.sort(function(a, b) {
+			  return a.innerHTML == b.innerHTML
+					  ? 0
+					  : (a.innerHTML > b.innerHTML ? 1 : -1);
+			});
+
+			for (i = 0; i < itemsArr.length; ++i) {
+			  list.appendChild(itemsArr[i]);
+			}
+		}	
 		
 		
 	</script>
