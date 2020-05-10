@@ -11,7 +11,7 @@ body {
 }
 
 .header-confirmed{
-  color: #ff073a
+  color: black;
 }
 
 
@@ -54,7 +54,8 @@ body {
 .numberFirst {
 	text-align: left;
 	margin-left: 1px;
-	width: 2%
+	width: 2%;
+	color: black;
 }
 
 .headerValue {
@@ -66,7 +67,8 @@ body {
 .headerFirst {
 	text-align: left;
 	margin-left: 1px;
-	width: 2%
+	width: 2%;
+	color: black;
 }
 
 .icon-bar {
