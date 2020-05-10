@@ -25,9 +25,6 @@
 
 	<title>Market Dashboard</title>
 
-	<!-- Bootstrap Core CSS -->
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 	<!-- Theme CSS -->
 	<link href="styles/custom-style.css" rel="stylesheet">
 
@@ -38,34 +35,27 @@
 	<link
 		href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
 		rel='stylesheet' type='text/css'>
+		
+	<link rel="stylesheet" href="./script/bootstrap.min.css">
+  <script src="./script/jquery.min.js"></script>
+  <script src="./script/bootstrap.min.js"></script>
 
 </head>
 
 <body>
 
-	<!-- Page Header -->
-	<!-- Set your background image for this header on the line below. -->
-	<header class="intro-header" style="background-image: url('images/simple-background-grey.png')">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-					<div class="site-heading">
-						<h2>Insights on Indices</h2>
-						<!-- <hr class="medium">
-						<span class="subheading">Lite version</span> -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<!-- Main Content -->
-	<article>
-		<div class="container" id="tabl">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+	<center>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="./index.html">Insights on Indices</a>
+    </div>
+	</center>
+	</nav>
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div id="section1" class="container-fluid main-class">
+				<h2>Nifty 50 & Sensex</h2>
 					<div class="states-box">
-						<h3 class="section-heading" style="padding-left: 5px">Nifty 50 & Sensex</h3>
 						<p id="updatedTime" style="font-size: 11px; padding-left: 5px">Last updated on: </p>
 						<blockquote>
 							<table class="table table-hover">
@@ -106,7 +96,7 @@
 						</blockquote>
 					</div>
 					
-					<div class="states-box">
+					<div class="states-box-bse">
 						<h3 class="section-heading" style="padding-left: 5px">BSE Indices</h3>
 						<p id="updatedTimeOthers" style="font-size: 11px; padding-left: 5px">Last updated on: </p>
 						<blockquote>
@@ -129,47 +119,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</article>
 
 	<hr>
-
-	<!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-					<ul class="list-inline text-center">
-						<center>
-							<li>
-								<a data-toggle="tooltip" title="Facebook" href="https://facebook.com/gokulan90"
-									target="_blank" class="social"><img src="images/icon-facebook.png" width="36"
-										height="36" draggable="false"></a>
-								<!-- <a data-toggle="tooltip" title="GitHub" href="https://github.com/gokulanviswanathan" target="_blank" class="social"><img src="images/icon-github.png" width="36" height="36" draggable="false"></a> -->
-							</li>
-							
-							<br/>
-							<p style="font-size:10px">Data Courtesy: <a data-toggle="tooltip" title="MoneyControl" href="https://www.moneycontrol.com/"
-									target="_blank" class="finance">www.moneycontrol.com</a></p>
-						</center>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-	</footer>
-
-	<!-- jQuery -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Contact Form JavaScript -->
-	<script src="script/jqBootstrapValidation.js"></script>
-
-	<!-- Theme JavaScript -->
-	<script src="script/clean-blog.min.js"></script>
 
 	<script>
 
@@ -350,6 +301,15 @@
 		
 	</script>
 
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+	<div class="icon-bar">
+		<center>
+			<a class="active" data-toggle="tooltip" title="MoneyControl" href="https://www.moneycontrol.com/"
+								target="_blank" class="Finance"><img href src="images/mc.png" width="42"
+									height="36" draggable="false"></a>
+		</center>
+	</div>
+	</nav>
 </body>
 
 </html>
