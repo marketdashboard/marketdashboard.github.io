@@ -1,44 +1,41 @@
 blockquote {
-  color: #777777;
-  font-style: normal;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  border: none !important;
+	color: #777777;
+	font-style: normal;
+	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	border: none !important;
 }
 
 body {
-  -webkit-tap-highlight-color: #0085A1;
+	-webkit-tap-highlight-color: #0085A1;
 }
 
-.header-confirmed{
-  color: black;
+.header-confirmed {
+	color: black;
 }
 
-
-.header-cprice{
-  color:#007bff
+.header-cprice {
+	color: #007bff
 }
 
-
-.header-dhigh{
-  color: #28a745
+.header-dhigh {
+	color: #28a745
 }
 
-
-.header-dlow{
-  color: #FF0000
+.header-dlow {
+	color: #FF0000
 }
 
-.header-dopen{
-  color: #FFA500
+.header-dopen {
+	color: #FFA500
 }
 
-.header-change{
-  color: #000000
+.header-change {
+	color: #000000
 }
 
-.header-fontstyle{
-  font-family: archia
+.header-fontstyle {
+	font-family: archia
 }
 
 .delta {
@@ -72,12 +69,12 @@ body {
 }
 
 .icon-bar {
-  font-size: 32px;
+	font-size: 32px;
 }
 
 #section1 {
-	padding-top:50px;
-	height:250px;
+	padding-top: 50px;
+	height: 250px;
 	color: black;
 	background-color: white;
 }
