@@ -109,3 +109,14 @@ table {
 .body {
 	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+.active-button {
+	color: #FFFFFF;
+}
+.header-button {
+	color: #8d8dc7;
+}
+
+.footer-button {
+	color: #ef7171;
+}
