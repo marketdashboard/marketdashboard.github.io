@@ -110,9 +110,18 @@ table {
 	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.active-header-button {
+	color: #FFFFFF;
+	background-color: #333382;
+	font-size: 11px;
+}
+
 .active-button {
 	color: #FFFFFF;
+	background-color: #8e0505;
+	font-size: 11px;
 }
+
 .header-button {
 	color: #8d8dc7;
 }
