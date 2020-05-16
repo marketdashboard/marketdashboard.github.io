@@ -24,8 +24,10 @@
       <link href="styles/custom-style.css" rel="stylesheet">
       <!-- Custom Fonts -->
       <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-      <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+      <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+         type='text/css'>
+      <link
+         href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
          rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="./script/bootstrap.min.css">
       <script src="./script/jquery.min.js"></script>
@@ -33,20 +35,19 @@
       <script src="./script/custom-script.js"></script>
    </head>
    <body>
-      <!-- Header Menu -->
       <nav class="navbar navbar-inverse navbar-fixed-top">
          <div class="container-fluid">
             <div class="navbar-header header-prop">
                <div class="btn-group btn-group-justified ">
-                  <a href="./index.html" class="btn btn-primary active">Asian<br>Indices</a>
+                  <a href="./index.html" class="btn btn-primary">Asian<br>Indices</a>
                   <a href="./american.html" class="btn btn-primary">American<br>Indices</a>
-                  <a href="./european.html" class="btn btn-primary">European<br>Indices</a>
+                  <a href="./european.html" class="btn btn-primary active">European<br>Indices</a>
                </div>
             </div>
          </div>
       </nav>
       <div id="section1" class="container-fluid main-class">
-         <h2>Asian Indices</h2>
+         <h2>European Indices</h2>
          <div class="value-box">
             <blockquote>
                <table class="table table-hover">
@@ -66,11 +67,8 @@
          </div>
       </div>
       <script>
-         // Get Sensex Index
-         getSensexIndex();
-         
-         // Get Asian Indices
-         getAsianIndices();   
+         // Get European Indices
+         getEuropeanIndices();
       </script>
       <!-- Footer menu -->
       <nav class="navbar navbar-inverse navbar-fixed-bottom">

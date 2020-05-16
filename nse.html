@@ -24,8 +24,10 @@
       <link href="styles/custom-style.css" rel="stylesheet">
       <!-- Custom Fonts -->
       <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-      <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+      <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+         type='text/css'>
+      <link
+         href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
          rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="./script/bootstrap.min.css">
       <script src="./script/jquery.min.js"></script>
@@ -33,12 +35,11 @@
       <script src="./script/custom-script.js"></script>
    </head>
    <body>
-      <!-- Header Menu -->
       <nav class="navbar navbar-inverse navbar-fixed-top">
          <div class="container-fluid">
             <div class="navbar-header header-prop">
-               <div class="btn-group btn-group-justified ">
-                  <a href="./index.html" class="btn btn-primary active">Asian<br>Indices</a>
+               <div class="btn-group btn-group-justified">
+                  <a href="./index.html" class="btn btn-primary">Asian<br>Indices</a>
                   <a href="./american.html" class="btn btn-primary">American<br>Indices</a>
                   <a href="./european.html" class="btn btn-primary">European<br>Indices</a>
                </div>
@@ -46,8 +47,9 @@
          </div>
       </nav>
       <div id="section1" class="container-fluid main-class">
-         <h2>Asian Indices</h2>
+         <h2>NSE Indices</h2>
          <div class="value-box">
+            <p id="updatedTime" style="font-size: 11px; padding-left: 5px"></p>
             <blockquote>
                <table class="table table-hover">
                   <thead class="table-heading">
@@ -66,18 +68,22 @@
          </div>
       </div>
       <script>
-         // Get Sensex Index
-         getSensexIndex();
+         // Get other NSE Indices
+         {
+         	
+         	var nseIndices = ["in%3BNSX", "in%3Bcjn","in%3Bccx","in%3Bmfy","in%3Bnnx","in%3Bncx","in%3Bcnxa","in%3Bnbx","in%3Bcgy","in%3Bcfm","in%3Bcfr","in%3Bcnit","in%3Bcnmx","in%3BCNXM","in%3Bcxc","in%3Bcpr","in%3Bcps","in%3Bcuk","in%3Bcrv","in%3Bcrl"];
          
-         // Get Asian Indices
-         getAsianIndices();   
+         	for (var nseElem=0; nseElem <= nseIndices.length-1; nseElem++) {
+         		getNseIndices(nseIndices[nseElem]);
+         	}
+         }
       </script>
       <!-- Footer menu -->
       <nav class="navbar navbar-inverse navbar-fixed-bottom">
          <div class="container-fluid">
             <div class="navbar-header footer-prop">
                <div class="btn-group btn-group-justified ">
-                  <a href="./nse.html" class="btn btn-primary">NSE<br>Indices</a>
+                  <a href="./nse.html" class="btn btn-primary active">NSE<br>Indices</a>
                   <a href="./bse.html" class="btn btn-primary">BSE<br>Indices</a>
                   <a href="./nifty.html" class="btn btn-primary">NIFTY<br>50</a>
                   <a href="./sensex.html" class="btn btn-primary">SENSEX<br>30</a>
