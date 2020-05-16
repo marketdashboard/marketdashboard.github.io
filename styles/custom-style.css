@@ -23,7 +23,7 @@ body {
 }
 
 .header-dlow {
-	color: #FF0000
+	color: #000000;
 }
 
 .header-dopen {
@@ -31,7 +31,7 @@ body {
 }
 
 .header-change {
-	color: #000000
+	color: #000000;
 }
 
 .header-fontstyle {
@@ -43,6 +43,20 @@ body {
 }
 
 .numberValue {
+	text-align: right;
+	margin-left: 1px;
+	width: 1%
+}
+
+.numberValueRed {
+	color: #FF0000;
+	text-align: right;
+	margin-left: 1px;
+	width: 1%
+}
+
+.numberValueGreen {
+	color: #28a745;
 	text-align: right;
 	margin-left: 1px;
 	width: 1%
@@ -90,4 +104,8 @@ table {
 
 .main-class {
 	padding-bottom: 25px;
+}
+
+.body {
+	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
